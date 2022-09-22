@@ -4,9 +4,9 @@
 # Thành viên:
   + Trịnh Công Vinh - 20021280
   + Hồ Thanh Huyền - 20020323 
-  + Phạm Thị Khánh Linh
-  + Lê Thị Cẩm Nhung
+  + Phạm Thị Khánh Linh - 20020324
+  + Lê Thị Cẩm Nhung - 20021408
   + Nguyễn Phúc Nguyên - 20021406
-  + Cấn Mạnh Hùng
+  + Cấn Mạnh Hùng - 20021364
   + Đỗ Xuân Hiệp - 20021348 
   + Hoàng Thu Giang - 20021340 

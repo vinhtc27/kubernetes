@@ -1,6 +1,6 @@
 # Bài tập lớn nhóm 6 môn Quản trị mạng.
 # Chủ đề: Kubernetes: k8s, Kubernetes networking, Network Policy.
-# Chủ đề chi tiết nhóm lựa chọn: Autoscaling in Kubernetes
+# Chủ đề chi tiết: Autoscaling in Kubernetes
 # Thành viên:
   + Trịnh Công Vinh - 20021280
   + Hồ Thanh Huyền - 20020323 

@@ -1,4 +1,4 @@
-# Kubernetes Service
+# Kubernetes Services
 
 ## Sử dụng ClusterIP
 + Tạo file tên hello-service.yaml (đã có)

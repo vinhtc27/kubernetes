@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deploy
+spec:
+  replicas: 2
+  strategy: # change here
+    type: RollingUpdate # strategy type is Recreate or RollingUpdate. Default is RollingUpdate
+  selector:
+    matchLabels:
+      app: hello-deploy
+  template:
+    metadata:
+      labels:
+        app: hello-deploy
+    spec:
+      containers:
+        - image: golang-docker-example
+          imagePullPolicy: IfNotPresent
+          name: hello-deploy
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  selector:
+    app: hello-deploy
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 31000

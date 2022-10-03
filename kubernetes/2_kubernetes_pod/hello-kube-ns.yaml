@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube-testing
+  namespace: testing # namespace name
+spec:
+  containers:
+    - image: golang-docker-example
+      imagePullPolicy: IfNotPresent
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP

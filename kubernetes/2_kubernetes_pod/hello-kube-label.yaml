@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube-testing
+  labels:
+    enviroment: testing # label with key is enviroment and value is testing
+    project: kubernetes-series
+spec:
+  containers:
+    - image: golang-docker-example
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube-staging
+  labels:
+    enviroment: staging # label with key is enviroment and value is staging
+    project: kubernetes-series
+spec:
+  containers:
+    - image: golang-docker-example
+      imagePullPolicy: IfNotPresent
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube-production
+  labels:
+    enviroment: production # label with key is enviroment and value is production
+    project: kubernetes-series
+spec:
+  containers:
+    - image: golang-docker-example
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP

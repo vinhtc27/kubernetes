@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-rc
+spec:
+  replicas: 2 # number of the pod
+  selector: # The pod selector determining what pods the RC is operating on
+    app: hello-kube # label value
+  template: # pod template
+    metadata:
+      labels:
+        app: hello-kube # label value
+    spec:
+      containers:
+        - image: golang-docker-example # image used to run container
+          imagePullPolicy: IfNotPresent
+          name: hello-kube # name of the container
+          ports:
+            - containerPort: 3000 # pod of the container

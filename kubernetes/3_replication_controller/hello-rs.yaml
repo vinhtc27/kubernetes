@@ -1,0 +1,20 @@
+apiVersion: apps/v1 # change version API
+kind: ReplicaSet # change resource name
+metadata:
+  name: hello-rs
+spec:
+  replicas: 2
+  selector:
+    matchLabels: # change here
+      app: hello-kube
+  template:
+    metadata:
+      labels:
+        app: hello-kube
+    spec:
+      containers:
+        - image: golang-docker-example
+          imagePullPolicy: IfNotPresent
+          name: hello-kube
+          ports:
+            - containerPort: 3000

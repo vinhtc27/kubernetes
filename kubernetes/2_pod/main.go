@@ -6,7 +6,7 @@ import (
 )
 
 func hello(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "Hello Kube v2\n")
+	fmt.Fprintf(w, "Hello Kube\n")
 }
 func main() {
 	http.HandleFunc("/", hello)

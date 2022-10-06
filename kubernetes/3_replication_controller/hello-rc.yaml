@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - image: golang-docker-example # image used to run container
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Never
           name: hello-kube # name of the container
           ports:
             - containerPort: 3000 # pod of the container

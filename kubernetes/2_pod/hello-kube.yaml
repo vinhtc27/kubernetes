@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - image: golang-docker-example # Image to create the container
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: Never
       name: hello-kube # The name of the container
       ports:
         - containerPort: 3000 # The port the app is listening on

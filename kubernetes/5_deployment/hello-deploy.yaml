@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - image: golang-docker-example
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Never
           name: hello-deploy
           ports:
             - containerPort: 3000

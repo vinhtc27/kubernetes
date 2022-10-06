@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - image: golang-docker-example
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Never
           name: hello-kube
           ports:
             - containerPort: 3000

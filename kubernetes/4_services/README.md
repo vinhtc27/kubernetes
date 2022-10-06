@@ -6,7 +6,7 @@
 + Kiểm tra service đã chạy hay chưa: ```kubectl get svc```
 + Ta có thể connect redis với địa chỉ sau redis://redis:6379 với host name là tên của Service chúng ta đặt trong trường metadata
 + Test thử service: ```kubectl run hello-redis --image=080196/hello-redis```
-+ Kiểm tra log của pod, nếu in ra Connect redis success thì chúng ta đã kết nối được với redis host bằng dns: kubectl logs hello-redis
++ Kiểm tra log của pod, nếu in ra Connect redis success thì chúng ta đã kết nối được với redis host bằng dns: ```kubectl logs hello-redis```
 + Xóa resources: ```kubectl delete pod hello-redis```
 
 ## Sử dụng Nodeport

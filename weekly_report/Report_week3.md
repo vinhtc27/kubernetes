@@ -9,7 +9,7 @@
     + Nhóm chạy trước về lí thuyết và tổng hợp tài liệu cho chủ đề (Hiệp, Hùng, Giang, Nhung)
 ## Khó khăn gặp phải:
 + Xảy ra nhiều lỗi liên quan đến cài dặt và chạy thử do mỗi thành viên sử dụng một loại hệ điều hành và phiên bản khác nhau (đang khắc phục)
-## Dự kiến công việc tuần 3:
+## Dự kiến công việc tuần 4:
 + Tiếp tục thực hành về Kubernetes.
 + Nắm bắt được các lý thuyết cần thiết còn thiếu cho Autoscaling trong Kubernetes.
 + Bắt đầu triển khai slide, viết tài liệu cho chủ đề của nhóm.

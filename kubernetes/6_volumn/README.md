@@ -17,6 +17,14 @@
 + Ta test thử: ```curl http://localhost:8080```
 + Xóa resources: ```kubectl delete pod gitrepo-volume-pod```
 
+## Volumn hostPath
++ Tạo file tên hostpath.yaml (đã có)
++ Tạo pod: ```kubectl apply -f hostpath.yaml```
++ Kiểm tra Pod đã chạy hay chưa: ```kubectl get pod```
++ Chạy câu lệnh để expose port của pod: ```kubectl port-forward hostpath-volume 8080:80```
++ Ta test thử: ```curl http://localhost:8080```
++ Xóa resources: ```kubectl delete pod hostpath-volume```
+
 
 
 

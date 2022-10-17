@@ -1,36 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-deploy
+  name: kubia
 spec:
-  replicas: 2
+  replicas: 3
   strategy: # change here
     type: RollingUpdate # strategy type is Recreate or RollingUpdate. Default is RollingUpdate
   selector:
     matchLabels:
-      app: hello-deploy
+      app: kubia
   template:
     metadata:
       labels:
-        app: hello-deploy
+        app: kubia
     spec:
       containers:
         - image: golang-docker-example
           imagePullPolicy: IfNotPresent
-          name: hello-deploy
+          name: kubia
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: 10m
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello
+  name: kubia
 spec:
   selector:
-    app: hello-deploy
+    app: kubia
   type: NodePort
   ports:
     - port: 3000
       targetPort: 3000
-      nodePort: 31000
+      nodePort: 30001

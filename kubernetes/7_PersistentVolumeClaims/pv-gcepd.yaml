@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongodb-pv
+spec:
+  capacity:
+    storage: 10Gi # size of the storage
+  accessModes: # access mode
+    - ReadWriteOnce # can be mounted by a single wokrer node for reading and writing
+    - ReadOnlyMany # can be mounted by a multiple wokrer node for reading only
+  persistentVolumeReclaimPolicy: Retain
+  gcePersistentDisk:
+    pdName: mongodb
+    fsType: ext4

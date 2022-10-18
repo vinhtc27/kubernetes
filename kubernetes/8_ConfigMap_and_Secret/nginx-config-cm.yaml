@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  my-nginx-config.conf: |
+    server {
+      listen 80;
+      server_name www.kubia-example.com;
+
+      gzip on;
+      gzip_types text/plain application/xml;
+
+      location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+      }
+    }

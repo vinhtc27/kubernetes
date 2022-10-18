@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-cm
+  labels:
+    app: application
+spec:
+  containers:
+    - image: 080196/hello-cm
+      name: hello-cm
+      ports:
+        - containerPort: 3000
+      envFrom: # using envFrom instead of env
+        - configMapRef: # referencing the ConfigMap
+            name: postgres-config # name of the ConfigMap
+          prefix: POSTGRES_ # All environment variables will be prefixed with POSTGRES_
+      env:
+        - name: PORT
+          value: "3000"
+        - name: DB_HOST
+          value: postgres
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+  labels:
+    app: db
+spec:
+  containers:
+    - image: postgres
+      name: postgres
+      ports:
+        - containerPort: 5432
+      envFrom:
+        - configMapRef:
+            name: postgres-config
+          prefix: POSTGRES_
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: db
+spec:
+  selector:
+    app: db
+  ports:
+    - port: 5432
+      targetPort: 5432

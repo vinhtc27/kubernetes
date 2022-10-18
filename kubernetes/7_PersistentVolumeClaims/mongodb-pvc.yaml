@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+spec:
+  resources:
+    requests:
+      storage: 10Gi # request 10Gi storage
+  accessModes:
+    - ReadWriteOnce # only allow one node can be read and write
+  storageClassName: ""

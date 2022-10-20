@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: downward
+spec:
+  containers:
+    - name: main
+      image: busybox
+      command: ["sleep", "9999999"]
+      resources:
+        requests:
+          cpu: 15m
+          memory: 100Ki
+        limits:
+          cpu: 100m
+          memory: 8Mi
+      env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef: # using downward API
+              fieldPath: metadata.name # the metadata.name field from the pod manifest
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace # the metadata.namespace field from the pod manifest
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP # access pod IP
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName # access node name
+        - name: CONTAINER_CPU_REQUEST_MILLICORES
+          valueFrom:
+            resourceFieldRef: # using resourceFieldRef instead of fieldRef.
+              resource: requests.cpu
+              divisor: 1m
+        - name: CONTAINER_MEMORY_LIMIT_KIBIBYTES
+          valueFrom:
+            resourceFieldRef:
+              resource: limits.memory
+              divisor: 1Ki

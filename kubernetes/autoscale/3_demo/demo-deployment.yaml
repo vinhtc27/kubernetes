@@ -1,13 +1,13 @@
-apiVersion: apps/v1   # change version API
-kind: Deployment  # change resource name
+apiVersion: apps/v1 # change version API
+kind: Deployment # change resource name
 metadata:
-  name: demo  # The name of the pod
+  name: demo # The name of the pod
 spec:
   replicas: 3 # number of the pod
   strategy: # deploy strategy
     type: RollingUpdate # strategy type is Recreate or RollingUpdate.
-  selector:   # The pod selector determining what pods the RC is operating on
-    matchLabels:  # change (replace ReplicationController as ReplicaSets)
+  selector: # The pod selector determining what pods the RC is operating on
+    matchLabels: # change (replace ReplicationController as ReplicaSets)
       app: demo # label value
   template: # pod template
     metadata:
@@ -15,9 +15,9 @@ spec:
         app: demo # label value
     spec:
       containers:
-        - image: demo-server  # Image to run the container
+        - image: demo-server # Image to run the container
           imagePullPolicy: IfNotPresent
-          name: demo  # The name of the container
+          name: demo # The name of the container
           ports:
             - containerPort: 3000 # Pod of the container
           resources:
@@ -25,7 +25,6 @@ spec:
               cpu: 100m #The container requests 100 millicores
               memory: 50Mi
       terminationGracePeriodSeconds: 10
-
 
 ---
 apiVersion: v1 # Descriptor conforms to version v1 of Kubernetes API
@@ -37,6 +36,6 @@ spec:
     app: demo # label selectors Pod
   type: NodePort3 # type NodePort
   ports:
-    - port: 3000  # port of the serivce
-      targetPort: 3000  # port of the container that service will forward to
+    - port: 3000 # port of the serivce
+      targetPort: 3000 # port of the container that service will forward to
       nodePort: 30001 # port of the worker node

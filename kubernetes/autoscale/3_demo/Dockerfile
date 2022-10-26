@@ -3,8 +3,8 @@
 FROM golang:1.17-alpine as build-env
 
 # Set environment variable
-ENV APP_NAME sample-dockerize-app
-ENV CMD_PATH main.go
+ENV APP_NAME demo-server
+ENV CMD_PATH demo-server.go
 
 # Copy application data into image
 COPY . $GOPATH/src/$APP_NAME
@@ -17,7 +17,7 @@ RUN CGO_ENABLED=0 go build -v -o /$APP_NAME $GOPATH/src/$APP_NAME/$CMD_PATH
 FROM alpine:3.14
 
 # Set environment variable
-ENV APP_NAME sample-dockerize-app
+ENV APP_NAME demo-server
 
 # Copy only required data into this image
 COPY --from=build-env /$APP_NAME .

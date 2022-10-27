@@ -3,16 +3,16 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: demo
 spec:
-  scaleTargetRef:
+  scaleTargetRef: # chỉ định scalable resource
     apiVersion: apps/v1
     kind: Deployment
     name: demo
-  minReplicas: 1
-  maxReplicas: 40
-  metrics:
+  minReplicas: 1 # min replicas
+  maxReplicas: 40 # max replicas
+  metrics:  # chỉ số đo lường của các container(pods)
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50
+          averageUtilization: 50  # cpu khoang 50%, nếu quá 50% quá trình autoscaling sẽ được thực thi.

@@ -2,7 +2,7 @@
 # Chủ đề: Kubernetes: k8s, Kubernetes networking, Network Policy.
 # Chủ đề chi tiết của nhóm: Autoscaling in Kubernetes
 # Thành viên:
-  + Trịnh Công Vinh - 20021280
+  + Trịnh Công Vinh - 20021478 - Nhóm trưởng
   + Hồ Thanh Huyền - 20020323 
   + Phạm Thị Khánh Linh - 20020324
   + Lê Thị Cẩm Nhung - 20021408

@@ -13,7 +13,9 @@
 ### Resource 
 + Kubernetes multi node cluster trên Digital Ocean
 + Phiên bản Linux Distro trên Digital Ocean sử dụng là Ubuntu 20.04
++ Cài đặt ```doctl``` để kết nối với Digital Ocean và ```kubectl``` để kết nối với cluster
 + Kết nối với Digital Ocean thông qua API KEY và có thể sử dụng lện kubectl tới cluster thông qua config
+
 ### Docker image demo-server
 + Tạo file Dockerfile cho file ```demo-server.go``` (đã có)
 + Run câu lệnh build image: ```docker build --platform linux/amd64 . -t demo-server```

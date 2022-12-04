@@ -7,12 +7,12 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: demo
-  minReplicas: 1 # min replicas
-  maxReplicas: 40 # max replicas
-  metrics:  # chỉ số đo lường của các container(pods)
+  minReplicas: 5 # min replicas
+  maxReplicas: 50 # max replicas
+  metrics: # chỉ số đo lường của các container(pods)
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50  # cpu khoang 50%, nếu quá 50% quá trình autoscaling sẽ được thực thi.
+          averageUtilization: 50 # cpu khoang 50%, nếu quá 50% quá trình autoscaling sẽ được thực thi.

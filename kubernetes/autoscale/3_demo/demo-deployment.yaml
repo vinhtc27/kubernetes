@@ -3,7 +3,7 @@ kind: Deployment # change resource name
 metadata:
   name: demo # The name of the pod
 spec:
-  replicas: 3 # number of the pod
+  replicas: 10 # number of the pod init
   strategy: # deploy strategy
     type: RollingUpdate # strategy type is Recreate or RollingUpdate.
   selector: # The pod selector determining what pods the RC is operating on
@@ -15,14 +15,14 @@ spec:
         app: demo # label value
     spec:
       containers:
-        - image: demo-server # Image to run the container
-          imagePullPolicy: IfNotPresent
+        - image: vinhtc27/demo-server:latest # Image to run the container
+          imagePullPolicy: Always
           name: demo # The name of the container
           ports:
             - containerPort: 3000 # Pod of the container
           resources:
             requests:
-              cpu: 100m #The container requests 100 millicores
+              cpu: 100m #The container requests 10 millicores
               memory: 50Mi
       terminationGracePeriodSeconds: 10
 
@@ -34,8 +34,10 @@ metadata:
 spec:
   selector:
     app: demo # label selectors Pod
-  type: NodePort3 # type NodePort
+  #type: NodePort # type NodePort
+  type: LoadBalancer # type LoadBalancer
+  externalTrafficPolicy: Cluster
   ports:
-    - port: 3000 # port of the serivce
+    - name: http
+      port: 80 # port of the serivce
       targetPort: 3000 # port of the container that service will forward to
-      nodePort: 30001 # port of the worker node

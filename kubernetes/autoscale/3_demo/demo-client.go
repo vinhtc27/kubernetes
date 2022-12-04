@@ -2,58 +2,15 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
-	"net"
 	"net/http"
 	"sync"
 )
 
-func externalIP() (string, error) {
-	ifaces, err := net.Interfaces()
-	if err != nil {
-		return "", err
-	}
-	for _, iface := range ifaces {
-		if iface.Flags&net.FlagUp == 0 {
-			continue // interface down
-		}
-		if iface.Flags&net.FlagLoopback != 0 {
-			continue // loopback interface
-		}
-		addrs, err := iface.Addrs()
-		if err != nil {
-			return "", err
-		}
-		for _, addr := range addrs {
-			var ip net.IP
-			switch v := addr.(type) {
-			case *net.IPNet:
-				ip = v.IP
-			case *net.IPAddr:
-				ip = v.IP
-			}
-			if ip == nil || ip.IsLoopback() {
-				continue
-			}
-			ip = ip.To4()
-			if ip == nil {
-				continue // not an ipv4 address
-			}
-			return ip.String(), nil
-		}
-	}
-	return "", errors.New("are you connected to the network?")
-}
-
 func main() {
-	ip, err := externalIP()
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	threadNumber := 20
+	loadbalancerExternalIP := "137.184.250.101"
+	threadNumber := 100
 	var channel = make(chan int, threadNumber+1)
 	var waitGroup sync.WaitGroup
 
@@ -66,7 +23,7 @@ func main() {
 					waitGroup.Done()
 					return
 				}
-				res, err := http.Get("http://" + ip + ":30001/demo")
+				res, err := http.Get("http://" + loadbalancerExternalIP + "/demo")
 				if err != nil {
 					fmt.Println(err)
 				}

@@ -2,7 +2,7 @@
 
 ## Đề bài
 + Cho một service với 1 API xử lí một công việc rất tốn tài nguyên CPU.
-+ Mỗi 1 instance của service chỉ được sử dụng tối đa là 0.1 core, và 100MB ram
++ Mỗi 1 instance của service chỉ được sử dụng tối đa là 100m core, và 50Mi ram
 + Với mỗi request từ client, server sẽ tốn tầm 0.05-0.1s để xử lí.
 + Tốc độ response của service có thể tăng lên 0.5-1s nếu lượng request tăng đột biến do tốc độ xử lí bị giới hạn bởi số core.
 + Số lượng request đến server sẽ là tăng giảm không biết trước theo khoảng thời gian khác nhau (để giả lập trường hợp thực tế).
@@ -26,8 +26,8 @@
 + Số lượng request đến không thể dự đoán trước và tài nguyên/thời gian xử lí request biết trước nên ta scale theo chiều ngang bằng HPA (Horizontal autoscaling)
 + Vì service thiên về sử dụng cpu, memory và i/o không đáng kể, nếu ta sẽ sử dụng scale theo chỉ số CPU.
 + Trước hết phải cài đặt metric-server để HPA có thể đọc được metric của pods.
-+ Tạo ra môt Deployment có port là 3000, sử dụng image demo-server và cấu hình các resource theo đề bài
-+ Tạo ra Service NodePort để expose ra ngoài ở cổng 30001, 
++ Tạo ra môt Deployment có port là 3000, sử dụng image ```vinhtc27/demo-server``` và cấu hình các resource theo đề bài
++ Tạo ra Service NodePort để expose ra ngoài ở cổng 80, 
 + Ta tạo ra một HPA, đọc thông tin metric theo resource cpu, đặt ngưỡng bắt đầu scale là 50% cpu của pod.
 
 ### Setup metrics server 

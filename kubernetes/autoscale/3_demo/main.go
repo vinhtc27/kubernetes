@@ -55,7 +55,7 @@ func Demo(w http.ResponseWriter, req *http.Request) {
 				i := 0
 				for {
 					i++
-					if i >= 100 {
+					if i >= 300 {
 						break
 					}
 				}
@@ -74,7 +74,7 @@ func Demo(w http.ResponseWriter, req *http.Request) {
 
 }
 func main() {
-	http.HandleFunc("/", Demo)
+	http.HandleFunc("/demo", Demo)
 	err := http.ListenAndServe(":3000", nil)
 	if err != nil {
 		log.Fatal(err.Error())

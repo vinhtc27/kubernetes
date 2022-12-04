@@ -14,6 +14,8 @@
 + Kubernetes multi node cluster trên Digital Ocean
 + Phiên bản Linux Distro trên Digital Ocean sử dụng là Ubuntu 20.04
 + Cài đặt ```doctl``` để kết nối với Digital Ocean và ```kubectl``` để kết nối với cluster
++ Connect tới Project: ```doctl auth init <KEY>```
++ Connect tới Cluster: ```doctl kubernetes cluster kubeconfig save <ClusterID>```
 + Kết nối với Digital Ocean thông qua API KEY và có thể sử dụng lện kubectl tới cluster thông qua config
 
 ### Docker image demo-server
@@ -39,9 +41,9 @@
 + Tạo file tên demo-deployment.yaml (đã có)
 + Tạo file tên demo-hpa.yaml (đã có)
 + Tạo Deployment + Service NodePort: ```kubectl apply -f demo-deployment.yaml```
-+ Kiểm tra các pods được tạo ra ```kubectl get pods``
++ Kiểm tra các pods được tạo ra ```kubectl get pods```
 + Tạo HPA: ```kubectl apply -f demo-hpa.yaml```
-+ Kiểm tra các services được tạo ra ```kubectl get services``
++ Kiểm tra các services được tạo ra ```kubectl get services```
 + Kiểm tra quá trình scale up: ```kubectl get hpa,deployment``` hoặc ```watch -n 1 kubectl get hpa,deployment``` nếu cài watch
 + Chạy file demo-client để tạo ra nhiều requests đến cluster, có thể thay đổi số threadNumber ở client để giả lập lượng request lớn hơn
 + Kiểm tra thông tin chi tiết của HPA: ```kubectl describe hpa demo``` hoặc ```watch -n 1 kubectl describe hpa demo``` nếu cài watch
@@ -50,9 +52,9 @@
 + Xóa HPA: ```kubectl delete hpa demo```
 
 ### Giải thích quá trình autoscaling
-+ Khi bắt đầu tạo ra deployment, service và hpa ta sẽ thấy 2 container tạo ra ở 2 pod.
-+ Sau đó một thời gian, HPA scale lượng pod xuống 1 do các pod đang sử dụng mức cpu rất thấp (scale down)
++ Khi bắt đầu tạo ra deployment, service và hpa ta sẽ thấy 10 container tạo ra ở 10 pod.
 + Khi ta chạy demo-client lượng lớn request gọi đến cluster, HPA tính toán lại và tăng số pod lên (scale up)
++ Sau đó một thời gian tắt demo-client, HPA scale lượng pod xuống 5 do các pod đang sử dụng mức cpu rất thấp (scale down)
 + Quá trình tính toán số desired pod sẽ diễn ra sau mỗi 60s và sau đó sẽ được scale (tùy config)
 
 ## Kết luận
